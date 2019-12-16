@@ -23,7 +23,7 @@ class User(AbstractUser):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, related_name='profile')
-    cash_onhand = models.FloatField(blank=False)
+    cash_onhand = models.FloatField(blank=False, default=0)
     #birthday = models.DateField(default=datetime.date.today)
     #school = models.CharField(max_length=128)
     #0 hs, 1 col, 2 ya
