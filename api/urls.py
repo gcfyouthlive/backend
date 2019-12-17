@@ -6,13 +6,15 @@ from . import views
 router = routers.DefaultRouter()
 
 # Users
-router.register(r'users', views.UserViewSet)
+router.register(r'users', views.UserViewSet)    
 # Ask.YouthLIVE
 router.register(r'ask', views.AyliveViewSet)
 # Events
 router.register(r'events',views.EventsViewSet)
 # Transaction
-router.register(r'ransaction', views.TransactionViewSet)
+router.register(r'transaction', views.TransactionViewSet)
+#Reciept
+router.register(r'reciept', views.RecieptViewSet)
 
 # Browsable API
 urlpatterns = [

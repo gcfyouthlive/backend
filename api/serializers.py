@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, UserProfile, Aylive, Events, Transaction
+from .models import User, UserProfile, Aylive, Events, Transaction, Reciept
 
 # Users
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -56,4 +56,9 @@ class EventsSerializer(serializers.ModelSerializer):
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
-        fields = ['id','url','user','trans_type','trans_establishment','trans_amt','trans_date','purpose','attendees']
+        fields = ['id','url','user','trans_date','purpose','attendees']
+
+class RecieptSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reciept
+        fields = ['transaction','acc_title','reci_establishment','reci_amt','reci_date','reci_or','img']
