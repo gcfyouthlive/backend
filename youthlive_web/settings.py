@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'portal.apps.PortalConfig',
     'cash.apps.CashConfig',
+    'camp2020.apps.Camp2020Config',
 ]
 
 MIDDLEWARE = [

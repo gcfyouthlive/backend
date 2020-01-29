@@ -21,4 +21,5 @@ urlpatterns = [
     path('api/',include('api.urls')),
     path('cash/',include('cash.urls')),
     path('portal/',include('portal.urls')),
+    path('', include('camp2020.urls')),
 ]
