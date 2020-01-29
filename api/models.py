@@ -21,15 +21,57 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
+LEVEL_CHOICES = (
+    ('0','High School'),
+    ('1', 'College'),
+)
+YEAR_CHOICES = (
+    ('0','1st Year'),
+    ('1', '2nd Year'),
+    ('2', '3rd Year'),
+    ('3', '4th Year')
+)
+EMC_CHOICES = (
+    ('mother', 'Mother'),
+    ('father', 'Father'),
+    ('guardian', 'Guardian'),
+)
+
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, related_name='profile')
-    cash_onhand = models.FloatField(blank=False, default=0)
     birthday = models.DateField(default=datetime.date.today)
-    school = models.CharField(max_length=128)
-    #0 hs, 1 col, 2 ya
-    level = models.PositiveSmallIntegerField()
-    address = models.CharField(max_length=255)
-    city = models.CharField(max_length=50)
+    contact = models.CharField(max_length=11, blank=False)
+    school = models.CharField(max_length=128, blank=False)
+    level = models.PositiveSmallIntegerField(choices=LEVEL_CHOICES, default=0, blank=False)
+    year = models.PositiveSmallIntegerField(choices=YEAR_CHOICES, default=0, blank=False)
+    #address = models.CharField(max_length=255)
+    #ity = models.CharField(max_length=50)
+    cash_onhand = models.FloatField(blank=False, default=0)
+    
+    
+# Camp
+    #TODO: Link to User Model for SSO/Flexibility
+class Camper(models.Model):
+    #user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='camp')
+    signup_date = models.DateField(auto_now_add=True, )
+    email = models.EmailField(_('email address'), unique=True, blank=False)
+    firstname = models.CharField(max_length=100, blank=False)
+    lastname = models.CharField(max_length=100, blank=False)
+    birthday = models.DateField(default=datetime.date.today)
+    contact = models.CharField(max_length=11, blank=False)
+    school = models.CharField(max_length=128, blank=False)
+    level = models.PositiveSmallIntegerField(choices=LEVEL_CHOICES, default=0, blank=False)
+    year = models.PositiveSmallIntegerField(choices=YEAR_CHOICES, default=0, blank=False)
+    emc_name = models.CharField(max_length=128, blank=False)
+    emc_num = models.CharField(max_length=11, blank=False)
+    emc_relation = models.CharField(max_length=10, choices=EMC_CHOICES, default='mother', blank=False)
+    paid = models.BooleanField(default=False, blank=False)
+    waiver = models.BooleanField(default=False, blank=False)
+    is_sponsored = models.BooleanField(default=False, blank=False)
+    #TODO: Replace with user link
+    sponsor = models.CharField(max_length=128, blank=True)
+    concerns = models.TextField(max_length=255, blank=True)
+
 
 # Ask.YouthLIVE
 class Aylive(models.Model):
@@ -72,6 +114,3 @@ class Reciept(models.Model):
     reci_date = models.DateField(blank=False)
     reci_or = models.CharField(max_length=254)
     img = models.ImageField(blank=True)
-
-# Camper
-#class Campers(models.Model):

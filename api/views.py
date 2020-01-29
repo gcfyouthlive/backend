@@ -1,14 +1,18 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import UserSerializer,AyliveSerializer, EventsSerializer, TransactionSerializer, RecieptSerializer
-from .models import User,Aylive,Events,Transaction,Reciept
+from .serializers import UserSerializer,CamperSerializer,AyliveSerializer, EventsSerializer, TransactionSerializer, RecieptSerializer
+from .models import User,Camper,Aylive,Events,Transaction,Reciept
 
 # API
 # Users
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('lastname')
     serializer_class = UserSerializer
-    
+
+# Campers
+class CamperViewSet(viewsets.ModelViewSet):
+    queryset = Camper.objects.all().order_by('lastname')
+    serializer_class = CamperSerializer
 
 # Ask.YouthLIVE
 class AyliveViewSet(viewsets.ModelViewSet):
@@ -29,3 +33,4 @@ class TransactionViewSet(viewsets.ModelViewSet):
 class RecieptViewSet(viewsets.ModelViewSet):
     queryset = Reciept.objects.all().order_by('reci_date')
     serializer_class = RecieptSerializer
+

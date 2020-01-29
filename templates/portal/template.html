@@ -1,0 +1,59 @@
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+        {%  block extracss %}{% endblock %}
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    {#    Navbar    #}
+    {% block navbar %}
+
+    <nav class="navbar navbar-expand-sm navbar-dark clearfix bg-dark">
+        <a href={% url 'portal_index' %} class="navbar-brand text-light" style="max-width:1200px">Youth LIVE Ministry Portal</a>
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" href="#">Ministries</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Fellowship</a>
+                    <a class="dropdown-item" href="#">Worship</a>
+                    <a class="dropdown-item disabled" href="#">Creatives</a>
+                    <a class="dropdown-item disabled" href="#">YST</a>
+                    <a class="dropdown-item" href="#"}>Frontline</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Camp</a>
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link">Hello, {{request.user.first_name}}!</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Profile</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="#">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="#">Login</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endblock %}
+    <nav style="background-color: lightgray">
+        Add breadcrumbs here ty
+    </nav>
+
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+    <script src="{"></script>
+    <script src="#popper"></script>
+    <script src="#bootstrapjs"></script>
+    {% block extrascripts %}
+    {%  endblock %}
+</html>

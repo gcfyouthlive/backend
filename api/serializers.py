@@ -1,18 +1,19 @@
 from rest_framework import serializers
-from .models import User, UserProfile, Aylive, Events, Transaction, Reciept
+from .models import User, UserProfile, Camper, Aylive, Events, Transaction, Reciept
 
 # Users
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ('birthday','school','level','address','city')
+        fields = '__all__'
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     profile = UserProfileSerializer(required=True)
 
     class Meta:
         model = User
-        fields = ('username','url','id','email','firstname','lastname','password','signup_date','profile')
+        fields = '__all__'
+        read_only_fields= ['cash_onhand']
         extra_kwargs = {'password':{'write_only':True},'signup_date':{'read_only':True}}
 
     def create(self, validated_data):
@@ -33,15 +34,23 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         instance.save()
     
         profile.birthday = profile_data.get('birthday', profile.birthday)
+        profile.contact = profile_data.get('contact', profile.contact)
         profile.school = profile_data.get('school', profile.school)
         profile.level = profile_data.get('level', profile.level)
-        profile.address = profile_data.get('address', profile.address)
-        profile.city = profile_data.get('city', profile.city)
+        profile.year = profile_data.get('year', profile.level)
+        profile.cash_onhand = profile_data('cash_onhand', profile.cash_onhand)
+        #profile.address = profile_data.get('address', profile.address)
+        #profile.city = profile_data.get('city', profile.city)
         profile.save()
         return instance
 
+#Camp
+class CamperSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Camper
+        fields = '__all__'
 # Ask.YouthLIVE
-class AyliveSerializer(serializers.HyperlinkedModelSerializer):
+class AyliveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Aylive
         fields = ['question','timestamp']

@@ -1,0 +1,45 @@
+{% extends "portal/template.html" %}
+
+{% block title %} Ministry Portal | Youth LIVE {% endblock %}
+
+{% block body %}
+    <div class="container col-12 mt-2">
+        <div class="row">
+            <div class="container col-md-8">
+
+                <div class="card bg-light mb-3">
+                    <div class="card-header text-white bg-dark">Announcements</div>
+                    <div class="card-body">
+                        {% for item in announcement %}
+                        <h5 class="card-title">{{ item.title }} | <a class="text-muted">{{ item.date_posted }}</a></h5>
+                        <p class="card-text">{{ item.text }}</p>
+                        <div class="dropdown-divider"></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="container col-md-4">
+                <div class="card bg-light mb-3">
+                    <div class="card-header">Quick Links</div>
+                    <div class="card-body">
+                        <div class="row m-1">
+                            <button type="button" class="btn btn-primary">btn</button>
+                            <button type="button" class="btn btn-primary">btn</button>
+                            <button type="button" class="btn btn-primary">btn</button>
+                            <button type="button" class="btn btn-primary">btn</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-light mb-3">
+                    <div class="card-header text-white bg-dark">Upcoming Events</div>
+                    <div class="card-body">
+                        <h5 class="card-title">event1</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

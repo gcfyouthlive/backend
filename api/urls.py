@@ -6,7 +6,9 @@ from . import views
 router = routers.DefaultRouter()
 
 # Users
-router.register(r'users', views.UserViewSet)    
+router.register(r'users', views.UserViewSet)
+# Campers
+router.register(r'campers', views.CamperViewSet)
 # Ask.YouthLIVE
 router.register(r'ask', views.AyliveViewSet)
 # Events
