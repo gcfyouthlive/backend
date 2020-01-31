@@ -4,6 +4,7 @@
 {% block title %} Camp | Youth LIVE {% endblock %}
 
 {% block body %}
+{#    {% debug %}#}
 <div class="container col-12 mt-2">
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -13,18 +14,12 @@
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-hs" role="tabpanel" aria-labelledby="nav-hs-tab">
-            test1
-            {% render_table query_hs %}
-        </div>
-        <div class="tab-pane fade" id="nav-col" role="tabpanel" aria-labelledby="nav-col-tab">
-            test2
-            {% render_table query_col %}
-        </div>
-        <div class="tab-pane fade" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
-            test3
-            {% render_table query_all %}
-        </div>
+        {% for table in tables %}
+            <div class="tab-pane fade show {% cycle 'active' '' '' %}" id="nav-{% cycle 'hs' 'col' 'all' %}" role="tabpanel" aria-labelledby="nav-{% cycle 'hs' 'col' 'all' %}-tab">
+                test {% cycle '1' '2' '3'%}
+                    {% render_table table %}
+            </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
