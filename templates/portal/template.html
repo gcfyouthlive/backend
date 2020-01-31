@@ -16,14 +16,15 @@
                 <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" href="#">Ministries</a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Fellowship</a>
-                    <a class="dropdown-item" href="#">Worship</a>
+                    <a class="dropdown-item disabled" href="#">Worship</a>
                     <a class="dropdown-item disabled" href="#">Creatives</a>
                     <a class="dropdown-item disabled" href="#">YST</a>
                     <a class="dropdown-item" href="#"}>Frontline</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Camp</a>
+                    <a class="dropdown-item" href="{% url 'portal_camp' %}">Camp</a>
                 </div>
             </li>
+            <a class="nav-link" role="button" href="{% url 'portal_camp' %}">Camp</a>
         </ul>
         <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
@@ -44,16 +45,16 @@
         </ul>
     </nav>
     {% endblock %}
-    <nav style="background-color: lightgray">
+    <nav class="p-2" style="background-color: lightgray; font-size: 50%;">
         Add breadcrumbs here ty
     </nav>
 
     <body>
         {% block body %}{% endblock %}
     </body>
-    <script src="{"></script>
-    <script src="#popper"></script>
-    <script src="#bootstrapjs"></script>
+    <script src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'popper/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
     {% block extrascripts %}
     {%  endblock %}
 </html>
