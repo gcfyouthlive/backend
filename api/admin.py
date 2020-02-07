@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import ugettext_lazy as _
 
 # Register your models here.
-from .models import User, UserProfile, Aylive, Events
+from .models import User, UserProfile, Camper, Aylive, Events
 
 
 class UserProfileInline(admin.StackedInline):

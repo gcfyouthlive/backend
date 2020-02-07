@@ -15,7 +15,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" href="#">Ministries</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Fellowship</a>
+                    <a class="dropdown-item disabled" href="#">Fellowship</a>
                     <a class="dropdown-item disabled" href="#">Worship</a>
                     <a class="dropdown-item disabled" href="#">Creatives</a>
                     <a class="dropdown-item disabled" href="#">YST</a>
@@ -25,11 +25,12 @@
                 </div>
             </li>
             <a class="nav-link" role="button" href="{% url 'portal_camp' %}">Camp</a>
+            <a class="nav-link" role="button" href="{% url 'portal_cash' %}">Cash</a>
         </ul>
         <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link">Hello, {{request.user.first_name}}!</a>
+                <a class="nav-link">Hello, {{request.user.firstname}}!</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Profile</a>

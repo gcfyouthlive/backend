@@ -1,0 +1,53 @@
+{% extends "portal/template.html" %}
+{% load django_tables2 %}
+
+{% block title %} Cash Tracker | Youth LIVE {% endblock %}
+
+{% block body %}
+{#    {% debug %}#}
+    <div class="container col-12">
+        <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-latest-tab" data-toggle="tab" href="#nav-latest" role="tab" aria-controls="nav-latest" aria-selected="true">Latest Transactions</a>
+            <a class="nav-item nav-link" id="nav-tbr-tab" data-toggle="tab" href="#nav-tbr" role="tab" aria-controls="nav-tbr" aria-selected="false">To Reimburse</a>
+            <a class="nav-item nav-link" id="nav-tbs-tab" data-toggle="tab" href="#nav-tbs" role="tab" aria-controls="nav-tbs" aria-selected="false">To Submit</a>
+            <a class="nav-item nav-link" id="nav-stats-tab" data-toggle="tab" href="#nav-stats" role="tab" aria-controls="nav-stats" aria-selected="false">Overview</a>
+        </div>
+    </nav>
+    <div class="tab-content mt-1" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-latest" role="tabpanel" aria-labelledby="nav-latest-tab">
+                <div class="float-right">
+                    <a class='btn-primary btn' href="#">New Transaction</a>
+                    <a class='btn-outline-primary btn' href="{% export_url "csv" %}&table=">Export CSV (WIP)</a>
+                </div>
+{#                    {% render_table query_latest %}#}
+            </div>
+            <div class="tab-pane fade show" id="nav-tbr" role="tabpanel" aria-labelledby="nav-tbr-tab">
+                <div class="float-right">
+                    <a class='btn-primary btn' href="#">New Transaction</a>
+                    <a class='btn-outline-primary btn' href="{% export_url "csv" %}&table=">Export CSV (WIP)</a>
+                </div>
+{#                    {% render_table query_latest %}#}
+            </div>
+            <div class="tab-pane fade show" id="nav-tbs" role="tabpanel" aria-labelledby="nav-tbs-tab">
+                <div class="float-right">
+                    <a class='btn-primary btn' href="#">New Transaction</a>
+                    <a class='btn-outline-primary btn' href="{% export_url "csv" %}&table=">Export CSV (WIP)</a>
+                </div>
+{#                    {% render_table query_latest %}#}
+            </div>
+            <div class="tab-pane fade show" id="nav-stats" role="tabpanel" aria-labelledby="nav-stats-tab">
+                <div class="float-right">
+                    <a class='btn-primary btn' href="#">New Transaction</a>
+                    <a class='btn-outline-primary btn' href="{% export_url "csv" %}&table=">Export CSV (WIP)</a>
+                </div>
+{#                    {% render_table query_latest %}#}
+            </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block extrascripts %}
+
+{% endblock %}

@@ -4,8 +4,27 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 import datetime, uuid
 
-# Create your models here.
-
+# Choices
+LEVEL_CHOICES = (
+    ('0', 'High School'),
+    ('1', 'College'),
+)
+YEAR_CHOICES = (
+    ('0', '1st Year'),
+    ('1', '2nd Year'),
+    ('2', '3rd Year'),
+    ('3', '4th Year')
+)
+EMC_CHOICES = (
+    ('mother', 'Mother'),
+    ('father', 'Father'),
+    ('guardian', 'Guardian'),
+)
+STATUS_CHOICES = (
+    ('TBR', 'TBR'),
+    ('TBS', 'TBS'),
+    ('DONE', 'DONE'),
+)
 #Custom User
 class User(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -21,21 +40,7 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
-LEVEL_CHOICES = (
-    ('0','High School'),
-    ('1', 'College'),
-)
-YEAR_CHOICES = (
-    ('0','1st Year'),
-    ('1', '2nd Year'),
-    ('2', '3rd Year'),
-    ('3', '4th Year')
-)
-EMC_CHOICES = (
-    ('mother', 'Mother'),
-    ('father', 'Father'),
-    ('guardian', 'Guardian'),
-)
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, related_name='profile')
@@ -99,6 +104,7 @@ class Transaction(models.Model):
     purpose = models.CharField(max_length=254,blank=False)
     #yg, fl, fellowship
     attendees = models.ManyToManyField(settings.AUTH_USER_MODEL,blank=True)
+    status = models.CharField(max_length=4,choices=STATUS_CHOICES, default='TBR')
 
 
     def __str__(self):
